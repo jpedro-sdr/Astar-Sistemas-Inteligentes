@@ -80,7 +80,6 @@ def a_estrela(inicio, destino):
     inicio_estacao, inicio_linha = inicio
     destino_estacao, destino_linha = destino
 
-    # Check if the stations belong to the lines
     if inicio_estacao not in linhas[inicio_linha]:
         raise ValueError(f"A estação {inicio_estacao} não pertence a linha {inicio_linha}.")
     if destino_estacao not in linhas[destino_linha]:
@@ -98,8 +97,8 @@ def a_estrela(inicio, destino):
             break
 
         estacao_atual, linha_atual = atual
-        for proximo_estacao in linhas[linha_atual]:  # Only consider stations on the current line
-            for proximo_linha in [linha for linha in linhas if proximo_estacao in linhas[linha]]:  # Only consider lines that include the next station
+        for proximo_estacao in linhas[linha_atual]:  
+            for proximo_linha in [linha for linha in linhas if proximo_estacao in linhas[linha]]:  
                 proximo = (proximo_estacao, proximo_linha)
                 novo_custo = custo_total[atual] + tempo_viagem(atual, proximo)
                 if proximo not in custo_total or novo_custo < custo_total[proximo]:
